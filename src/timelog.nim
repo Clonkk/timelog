@@ -5,9 +5,10 @@ import times
 template timelog*(name: string, body) =
   ## Time execution of code using monoTime and log the result
   runnableExamples:
-    var seq = newSeq[int]
+    import sequtils
+    var seq = newSeq[int]()
     timelog("my-test-case"):
-      for i in 1..1e6:
+      for i in 1..1_000_000:
         seq.add (i*i)
 
   let t0 = getMonoTime()
@@ -19,10 +20,11 @@ template timelog*(name: string, timingcond: untyped, body) =
   ## Time execution of code if ``timingcond``is defined
   ## This allows for conditional time measurement without changing code
   runnableExamples:
-    var seq = newSeq[int]
+    import sequtils
+    var seq = newSeq[int]()
     # Only evaluate if ``-d:mytimingdefine`` has been passed to the compiler
     timelog("my-test-case", mytimingdefine):
-      for i in 1..1e6:
+      for i in 1..1_000_000:
         seq.add (i*i)
 
   when defined(timingcond):
