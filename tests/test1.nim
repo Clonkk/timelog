@@ -12,12 +12,12 @@ proc p2() =
   sleep(1_234)
 
 proc main()=
-  timeit("p1", mytiming):
+  timelog("p1", mytiming):
    let x = p1()
 
   echo x
 
-  timeit("p2"):
+  timelog("p2"):
   # timeOnce("p2"):
     p2()
 
