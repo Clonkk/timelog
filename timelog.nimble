@@ -1,6 +1,6 @@
 # Package
 
-version       = "1.0.1"
+version       = "1.0.2"
 author        = "rcaillaud"
 description   = "Simple nimble package to log monotic timings"
 license       = "MIT"
