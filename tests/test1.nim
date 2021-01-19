@@ -12,14 +12,21 @@ proc p2() =
   sleep(1_234)
 
 proc main()=
-  timelog("p1", mytiming):
-   let x = p1()
+  block:
+    timelog("p1", mytiming):
+     let x = p1()
+    doAssert x == "hello"
 
-  echo x
+    timelog("p2"):
+      p2()
 
-  timelog("p2"):
-  # timeOnce("p2"):
-    p2()
+  block:
+    timeIt("p1"):
+      let x = p1()
+    doAssert x == "hello"
+
+    timeIt("p2"):
+      p2()
 
 when isMainModule:
   main()
