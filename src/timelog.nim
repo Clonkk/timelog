@@ -2,7 +2,14 @@ import std/monotimes
 import logging
 import times
 
-template timelog*(name: string, body) =
+template timeIt*(name: string, body) =
+  ## Time execution of code using monoTime and echo the result
+  let t0 = getMonoTime()
+  body
+  let elapsed = (getMonoTime() - t0)
+  echo(name, " timings ", elapsed)
+
+template timeLog*(name: string, body) =
   ## Time execution of code using monoTime and log the result
   runnableExamples:
     import sequtils
@@ -16,7 +23,7 @@ template timelog*(name: string, body) =
   let elapsed = (getMonoTime() - t0)
   info(name, " timings ", elapsed)
 
-template timelog*(name: string, timingcond: untyped, body) =
+template timeLog*(name: string, timingcond: untyped, body) =
   ## Time execution of code if ``timingcond``is defined
   ## This allows for conditional time measurement without changing code
   runnableExamples:
