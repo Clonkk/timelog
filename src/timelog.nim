@@ -6,8 +6,8 @@ template timeIt*(name: string, body) =
   ## Time execution of code using monoTime and echo the result
   let t0 = getMonoTime()
   body
-  let elapsed = (getMonoTime() - t0)
-  echo(name, " timings ", elapsed)
+  let elapsed = inMicroseconds(getMonoTime() - t0)
+  echo(name, " timings ", elapsed, " µs")
 
 template timeLog*(name: string, body) =
   ## Time execution of code using monoTime and log the result
@@ -20,8 +20,8 @@ template timeLog*(name: string, body) =
 
   let t0 = getMonoTime()
   body
-  let elapsed = (getMonoTime() - t0)
-  info(name, " timings ", elapsed)
+  let elapsed = inMicroseconds(getMonoTime() - t0)
+  info(name, " timings ", elapsed, " µs")
 
 template timeLog*(name: string, timingcond: untyped, body) =
   ## Time execution of code if ``timingcond``is defined
