@@ -27,4 +27,3 @@ https://clonkk.github.io/timelog/
 ### Generation
 
 Generate documentation ``nimble doc src/timelog.nim --outdir:docs/``
-

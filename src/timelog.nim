@@ -1,22 +1,9 @@
 import std/monotimes
-import logging
-import times
-import algorithm
+import std/logging
+import std/times
 
 proc fmtDuration(elapsed: Duration): string =
-  let dp = toParts(elapsed)
-  var parts : seq[string]
-  for unit in TimeUnit:
-    if ord(unit) < len(dp):
-      let value = dp[unit]
-      if value != 0:
-        parts.add $value & " " & $unit
-
-  parts.reverse()
-  for p in parts:
-    result.add p
-    if p != parts[^1]:
-      result.add ", "
+  return $elapsed
 
 template timeIt*(name: string, body) =
   ## Time execution of code using monoTime and echo the result
